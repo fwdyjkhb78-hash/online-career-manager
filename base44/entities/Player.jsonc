@@ -1,0 +1,225 @@
+{
+  "name": "Player",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom du joueur"
+    },
+    "position": {
+      "type": "string",
+      "enum": [
+        "GK",
+        "CB",
+        "LB",
+        "RB",
+        "CDM",
+        "CM",
+        "CAM",
+        "LW",
+        "RW",
+        "ST"
+      ],
+      "description": "Position du joueur"
+    },
+    "club_id": {
+      "type": "string",
+      "description": "ID du club actuel"
+    },
+    "club_name": {
+      "type": "string",
+      "description": "Nom du club actuel"
+    },
+    "overall": {
+      "type": "number",
+      "description": "Note globale du joueur (1-99)"
+    },
+    "potential": {
+      "type": "number",
+      "description": "Potentiel maximum du joueur (1-99). Le joueur ne peut pas \u00e9voluer au-del\u00e0 de cette valeur."
+    },
+    "pace": {
+      "type": "number",
+      "description": "Vitesse"
+    },
+    "shooting": {
+      "type": "number",
+      "description": "Tir"
+    },
+    "passing": {
+      "type": "number",
+      "description": "Passe"
+    },
+    "dribbling": {
+      "type": "number",
+      "description": "Dribble"
+    },
+    "defending": {
+      "type": "number",
+      "description": "D\u00e9fense"
+    },
+    "physical": {
+      "type": "number",
+      "description": "Physique"
+    },
+    "value": {
+      "type": "number",
+      "description": "Valeur marchande en euros"
+    },
+    "age": {
+      "type": "number",
+      "description": "\u00c2ge du joueur"
+    },
+    "nationality": {
+      "type": "string",
+      "description": "Nationalit\u00e9"
+    },
+    "height": {
+      "type": "number",
+      "description": "Taille en cm"
+    },
+    "weight": {
+      "type": "number",
+      "description": "Poids en kg"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Photo du joueur"
+    },
+    "is_on_transfer_list": {
+      "type": "boolean",
+      "default": false,
+      "description": "Le joueur est-il sur la liste des transferts"
+    },
+    "asking_price": {
+      "type": "number",
+      "description": "Prix demand\u00e9 pour le transfert"
+    },
+    "release_clause": {
+      "type": "number",
+      "description": "Clause de lib\u00e9ration (transfert automatique si achet\u00e9e)"
+    },
+    "is_academy": {
+      "type": "boolean",
+      "default": false,
+      "description": "Joueur cr\u00e9\u00e9 via le centre de formation"
+    },
+    "is_suspended": {
+      "type": "boolean",
+      "default": false,
+      "description": "Joueur suspendu (carton rouge)"
+    },
+    "suspension_reason": {
+      "type": "string",
+      "description": "Raison de la suspension"
+    },
+    "player_details": {
+      "type": "string",
+      "description": "Description IA du joueur (formation)"
+    },
+    "centres": {
+      "type": "number"
+    },
+    "finition": {
+      "type": "number"
+    },
+    "precision_tete": {
+      "type": "number"
+    },
+    "passes_courtes": {
+      "type": "number"
+    },
+    "volees": {
+      "type": "number"
+    },
+    "aptitude": {
+      "type": "number"
+    },
+    "mauvais_pied": {
+      "type": "number"
+    },
+    "tacles_debout": {
+      "type": "number"
+    },
+    "tacles_glisses": {
+      "type": "number"
+    },
+    "dribbles": {
+      "type": "number"
+    },
+    "effet": {
+      "type": "number"
+    },
+    "precision_cf": {
+      "type": "number"
+    },
+    "passes_longues": {
+      "type": "number"
+    },
+    "conduite_balle": {
+      "type": "number"
+    },
+    "puissance_tir": {
+      "type": "number"
+    },
+    "detente": {
+      "type": "number"
+    },
+    "endurance": {
+      "type": "number"
+    },
+    "force": {
+      "type": "number"
+    },
+    "tirs_loin": {
+      "type": "number"
+    },
+    "acceleration": {
+      "type": "number"
+    },
+    "vitesse_sprint": {
+      "type": "number"
+    },
+    "agilite": {
+      "type": "number"
+    },
+    "reactivite": {
+      "type": "number"
+    },
+    "equilibre": {
+      "type": "number"
+    },
+    "agressivite": {
+      "type": "number"
+    },
+    "interception": {
+      "type": "number"
+    },
+    "positionnement": {
+      "type": "number"
+    },
+    "vista": {
+      "type": "number"
+    },
+    "penaltys": {
+      "type": "number"
+    },
+    "plongeon": {
+      "type": "number"
+    },
+    "jeu_a_la_main": {
+      "type": "number"
+    },
+    "degagement": {
+      "type": "number"
+    },
+    "reflexe_g": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "name",
+    "position",
+    "overall"
+  ]
+}

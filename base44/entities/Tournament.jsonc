@@ -1,0 +1,135 @@
+{
+  "name": "Tournament",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom du tournoi"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description du tournoi"
+    },
+    "tournament_type": {
+      "type": "string",
+      "enum": [
+        "championnat",
+        "tableau",
+        "poules",
+        "coupe",
+        "poules_tableau"
+      ],
+      "default": "tableau",
+      "description": "Format du tournoi"
+    },
+    "team_count": {
+      "type": "number",
+      "default": 8,
+      "description": "Nombre d'\u00e9quipes participantes"
+    },
+    "participating_club_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "IDs des clubs participants"
+    },
+    "participating_club_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Noms des clubs participants"
+    },
+    "group_count": {
+      "type": "number",
+      "default": 2,
+      "description": "Nombre de groupes (pour phase de poules)"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "group_name": {
+            "type": "string"
+          },
+          "club_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "club_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "default": [],
+      "description": "Groupes de la phase de poules"
+    },
+    "knockout_generated": {
+      "type": "boolean",
+      "default": false,
+      "description": "La phase \u00e9liminatoire a-t-elle \u00e9t\u00e9 g\u00e9n\u00e9r\u00e9e ?"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "upcoming",
+        "ongoing",
+        "finished"
+      ],
+      "default": "upcoming"
+    },
+    "prize_1st": {
+      "type": "number",
+      "default": 0
+    },
+    "prize_2nd": {
+      "type": "number",
+      "default": 0
+    },
+    "prize_3rd": {
+      "type": "number",
+      "default": 0
+    },
+    "winner_club_id": {
+      "type": "string"
+    },
+    "winner_club_name": {
+      "type": "string"
+    },
+    "second_club_id": {
+      "type": "string"
+    },
+    "second_club_name": {
+      "type": "string"
+    },
+    "third_club_id": {
+      "type": "string"
+    },
+    "third_club_name": {
+      "type": "string"
+    },
+    "results_text": {
+      "type": "string",
+      "description": "R\u00e9sultats d\u00e9taill\u00e9s"
+    },
+    "rewards_distributed": {
+      "type": "boolean",
+      "default": false
+    },
+    "created_by_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

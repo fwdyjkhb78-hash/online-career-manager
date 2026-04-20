@@ -1,0 +1,108 @@
+// Chaque slot : { position_slot, x (0-100), y (0-100) }
+// x=0 gauche, x=100 droite, y=0 attaque, y=100 défense
+
+export const FORMATIONS = {
+  '4-3-3': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'LB',  x: 15, y: 72 },
+    { position_slot: 'CB',  x: 35, y: 72 },
+    { position_slot: 'CB',  x: 65, y: 72 },
+    { position_slot: 'RB',  x: 85, y: 72 },
+    { position_slot: 'CM',  x: 25, y: 52 },
+    { position_slot: 'CDM', x: 50, y: 55 },
+    { position_slot: 'CM',  x: 75, y: 52 },
+    { position_slot: 'LW',  x: 18, y: 28 },
+    { position_slot: 'ST',  x: 50, y: 18 },
+    { position_slot: 'RW',  x: 82, y: 28 },
+  ],
+  '4-4-2': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'LB',  x: 15, y: 72 },
+    { position_slot: 'CB',  x: 35, y: 72 },
+    { position_slot: 'CB',  x: 65, y: 72 },
+    { position_slot: 'RB',  x: 85, y: 72 },
+    { position_slot: 'LM',  x: 15, y: 50 },
+    { position_slot: 'CM',  x: 37, y: 50 },
+    { position_slot: 'CM',  x: 63, y: 50 },
+    { position_slot: 'RM',  x: 85, y: 50 },
+    { position_slot: 'ST',  x: 37, y: 22 },
+    { position_slot: 'ST',  x: 63, y: 22 },
+  ],
+  '4-2-3-1': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'LB',  x: 15, y: 72 },
+    { position_slot: 'CB',  x: 35, y: 72 },
+    { position_slot: 'CB',  x: 65, y: 72 },
+    { position_slot: 'RB',  x: 85, y: 72 },
+    { position_slot: 'CDM', x: 37, y: 57 },
+    { position_slot: 'CDM', x: 63, y: 57 },
+    { position_slot: 'LW',  x: 18, y: 35 },
+    { position_slot: 'CAM', x: 50, y: 35 },
+    { position_slot: 'RW',  x: 82, y: 35 },
+    { position_slot: 'ST',  x: 50, y: 16 },
+  ],
+  '3-5-2': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'CB',  x: 25, y: 72 },
+    { position_slot: 'CB',  x: 50, y: 72 },
+    { position_slot: 'CB',  x: 75, y: 72 },
+    { position_slot: 'LM',  x: 10, y: 52 },
+    { position_slot: 'CM',  x: 30, y: 52 },
+    { position_slot: 'CM',  x: 50, y: 52 },
+    { position_slot: 'CM',  x: 70, y: 52 },
+    { position_slot: 'RM',  x: 90, y: 52 },
+    { position_slot: 'ST',  x: 37, y: 22 },
+    { position_slot: 'ST',  x: 63, y: 22 },
+  ],
+  '4-1-4-1': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'LB',  x: 15, y: 72 },
+    { position_slot: 'CB',  x: 35, y: 72 },
+    { position_slot: 'CB',  x: 65, y: 72 },
+    { position_slot: 'RB',  x: 85, y: 72 },
+    { position_slot: 'CDM', x: 50, y: 60 },
+    { position_slot: 'LM',  x: 12, y: 42 },
+    { position_slot: 'CM',  x: 35, y: 42 },
+    { position_slot: 'CM',  x: 65, y: 42 },
+    { position_slot: 'RM',  x: 88, y: 42 },
+    { position_slot: 'ST',  x: 50, y: 16 },
+  ],
+  '5-3-2': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'LB',  x: 10, y: 70 },
+    { position_slot: 'CB',  x: 28, y: 74 },
+    { position_slot: 'CB',  x: 50, y: 76 },
+    { position_slot: 'CB',  x: 72, y: 74 },
+    { position_slot: 'RB',  x: 90, y: 70 },
+    { position_slot: 'CM',  x: 28, y: 50 },
+    { position_slot: 'CM',  x: 50, y: 50 },
+    { position_slot: 'CM',  x: 72, y: 50 },
+    { position_slot: 'ST',  x: 37, y: 22 },
+    { position_slot: 'ST',  x: 63, y: 22 },
+  ],
+  '4-3-2-1': [
+    { position_slot: 'GK',  x: 50, y: 90 },
+    { position_slot: 'LB',  x: 15, y: 72 },
+    { position_slot: 'CB',  x: 35, y: 72 },
+    { position_slot: 'CB',  x: 65, y: 72 },
+    { position_slot: 'RB',  x: 85, y: 72 },
+    { position_slot: 'CM',  x: 25, y: 54 },
+    { position_slot: 'CDM', x: 50, y: 57 },
+    { position_slot: 'CM',  x: 75, y: 54 },
+    { position_slot: 'CAM', x: 33, y: 32 },
+    { position_slot: 'CAM', x: 67, y: 32 },
+    { position_slot: 'ST',  x: 50, y: 14 },
+  ],
+};
+
+export const FORMATION_NAMES = Object.keys(FORMATIONS);
+
+export function buildLineupFromFormation(formation) {
+  const slots = FORMATIONS[formation] || FORMATIONS['4-3-3'];
+  return slots.map(slot => ({
+    ...slot,
+    player_id: '',
+    player_name: '',
+    instructions: { list: [] },
+  }));
+}

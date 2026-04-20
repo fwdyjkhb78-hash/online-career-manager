@@ -1,0 +1,140 @@
+{
+  "name": "Transfer",
+  "type": "object",
+  "properties": {
+    "player_id": {
+      "type": "string"
+    },
+    "player_name": {
+      "type": "string"
+    },
+    "from_club_id": {
+      "type": "string"
+    },
+    "from_club_name": {
+      "type": "string"
+    },
+    "to_club_id": {
+      "type": "string"
+    },
+    "to_club_name": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "negotiating",
+        "accepted",
+        "rejected",
+        "completed"
+      ],
+      "default": "pending"
+    },
+    "offer_type": {
+      "type": "string",
+      "enum": [
+        "transfer",
+        "loan",
+        "swap"
+      ],
+      "default": "transfer"
+    },
+    "is_release_clause": {
+      "type": "boolean",
+      "default": false,
+      "description": "Offre via clause de lib\u00e9ration \u2014 transfert direct sans ench\u00e8re si accept\u00e9e"
+    },
+    "swap_player_id": {
+      "type": "string"
+    },
+    "swap_player_name": {
+      "type": "string"
+    },
+    "swap_player_position": {
+      "type": "string"
+    },
+    "swap_player_overall": {
+      "type": "number"
+    },
+    "swap_player_value": {
+      "type": "number"
+    },
+    "loan_seasons": {
+      "type": "number",
+      "default": 1
+    },
+    "loan_buy_option": {
+      "type": "number"
+    },
+    "loan_mandatory_buy_option": {
+      "type": "number"
+    },
+    "loan_recall_fee": {
+      "type": "number"
+    },
+    "buyback_clause": {
+      "type": "number"
+    },
+    "performance_bonuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "default": []
+    },
+    "competition_bonuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "homme_du_match",
+              "ballon_dor",
+              "totw",
+              "tots"
+            ]
+          },
+          "threshold": {
+            "type": "number"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "default": []
+    },
+    "offer_message": {
+      "type": "string"
+    },
+    "last_offer_by": {
+      "type": "string"
+    },
+    "negotiation_history": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "default": []
+    }
+  },
+  "required": [
+    "player_id",
+    "player_name",
+    "amount"
+  ]
+}

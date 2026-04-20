@@ -1,0 +1,91 @@
+{
+  "name": "Match",
+  "type": "object",
+  "properties": {
+    "journee": {
+      "type": "number",
+      "description": "Num\u00e9ro de la journ\u00e9e"
+    },
+    "match_type": {
+      "type": "string",
+      "enum": [
+        "championnat",
+        "tournoi"
+      ],
+      "default": "championnat",
+      "description": "Type de match : championnat ou tournoi"
+    },
+    "tournament_id": {
+      "type": "string",
+      "description": "ID du tournoi si match de tournoi"
+    },
+    "tournament_name": {
+      "type": "string",
+      "description": "Nom du tournoi"
+    },
+    "home_club_id": {
+      "type": "string"
+    },
+    "home_club_name": {
+      "type": "string"
+    },
+    "away_club_id": {
+      "type": "string"
+    },
+    "away_club_name": {
+      "type": "string"
+    },
+    "home_score": {
+      "type": "number"
+    },
+    "away_score": {
+      "type": "number"
+    },
+    "home_scorers": {
+      "type": "string",
+      "description": "Buteurs domicile (texte libre)"
+    },
+    "away_scorers": {
+      "type": "string",
+      "description": "Buteurs ext\u00e9rieur (texte libre)"
+    },
+    "home_stats": {
+      "type": "object",
+      "description": "Stats \u00e9quipe domicile"
+    },
+    "away_stats": {
+      "type": "object",
+      "description": "Stats \u00e9quipe ext\u00e9rieur"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "home_submitted",
+        "away_submitted",
+        "confirmed"
+      ],
+      "default": "pending",
+      "description": "\u00c9tat de saisie du match"
+    },
+    "home_submitted_by": {
+      "type": "string"
+    },
+    "away_submitted_by": {
+      "type": "string"
+    },
+    "red_cards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Noms des joueurs ayant re\u00e7u un carton rouge (suspendus au prochain match)"
+    }
+  },
+  "required": [
+    "journee",
+    "home_club_id",
+    "away_club_id"
+  ]
+}

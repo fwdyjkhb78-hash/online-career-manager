@@ -1,0 +1,85 @@
+{
+  "name": "PlayerMessage",
+  "type": "object",
+  "properties": {
+    "player_id": {
+      "type": "string"
+    },
+    "player_name": {
+      "type": "string"
+    },
+    "player_position": {
+      "type": "string"
+    },
+    "player_overall": {
+      "type": "number"
+    },
+    "player_image_url": {
+      "type": "string"
+    },
+    "club_id": {
+      "type": "string"
+    },
+    "club_name": {
+      "type": "string"
+    },
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "transfer_request",
+        "playtime",
+        "captain",
+        "contract",
+        "morale",
+        "match_reaction",
+        "form"
+      ],
+      "description": "Type de message du joueur"
+    },
+    "content": {
+      "type": "string",
+      "description": "Texte du message g\u00e9n\u00e9r\u00e9 par IA"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": [
+        "happy",
+        "neutral",
+        "unhappy",
+        "angry",
+        "excited"
+      ],
+      "default": "neutral"
+    },
+    "morale": {
+      "type": "number",
+      "description": "Niveau de moral 0-100",
+      "default": 75
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    },
+    "manager_reply": {
+      "type": "string"
+    },
+    "replied_at": {
+      "type": "string"
+    },
+    "match_id": {
+      "type": "string",
+      "description": "Li\u00e9 \u00e0 un match si r\u00e9action"
+    },
+    "match_result": {
+      "type": "string",
+      "description": "R\u00e9sultat du match associ\u00e9"
+    }
+  },
+  "required": [
+    "player_id",
+    "player_name",
+    "club_id",
+    "content",
+    "message_type"
+  ]
+}
