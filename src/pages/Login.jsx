@@ -1,94 +1,82 @@
-import { useState } from "react";
-import { login } from "../auth";
+import { useState } from 'react'
+import { supabase } from '../lib/supabaseClient'
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isLogin, setIsLogin] = useState(true)
+  const [message, setMessage] = useState('')
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+  const handleAuth = async (e) => {
+    e.preventDefault()
+    setMessage('')
 
-    try {
-      const user = await login(email, password);
+    if (isLogin) {
+      // 🔑 CONNEXION
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-      // 👑 redirection selon rôle
-      if (user.role === "owner") {
-        window.location.href = "/admin";
+      if (error) {
+        setMessage(error.message)
       } else {
-        window.location.href = "/";
+        setMessage('Connecté ✅')
+        window.location.href = '/' // redirection
       }
-    } catch (err) {
-      setError(err.message);
-    }
 
-    setLoading(false);
-  };
+    } else {
+      // 📝 INSCRIPTION
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+      })
+
+      if (error) {
+        setMessage(error.message)
+      } else {
+        setMessage('Compte créé ✅ (vérifie ton email)')
+      }
+    }
+  }
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleLogin} style={styles.card}>
-        <h2>Connexion</h2>
+    <div style={{ maxWidth: 400, margin: 'auto' }}>
+      <h2>{isLogin ? 'Connexion' : 'Inscription'}</h2>
 
+      <form onSubmit={handleAuth}>
         <input
-          style={styles.input}
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <input
-          style={styles.input}
           type="password"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
-        {error && <p style={styles.error}>{error}</p>}
-
-        <button style={styles.button} disabled={loading}>
-          {loading ? "Connexion..." : "Login"}
+        <button type="submit">
+          {isLogin ? 'Se connecter' : "S'inscrire"}
         </button>
       </form>
-    </div>
-  );
-}
 
-const styles = {
-  container: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f5f5f5",
-  },
-  card: {
-    width: 300,
-    padding: 20,
-    background: "white",
-    borderRadius: 10,
-    display: "flex",
-    flexDirection: "column",
-    gap: 10,
-  },
-  input: {
-    padding: 10,
-    border: "1px solid #ccc",
-    borderRadius: 5,
-  },
-  button: {
-    padding: 10,
-    background: "black",
-    color: "white",
-    border: "none",
-    cursor: "pointer",
-  },
-  error: {
-    color: "red",
-    fontSize: 12,
-  },
-};
+      <p>{message}</p>
+
+      <button onClick={() => setIsLogin(!isLogin)}>
+        {isLogin
+          ? "Créer un compte"
+          : "J'ai déjà un compte"}
+      </button>
+    </div>
+  )
+}
+const logout = async () => {
+  await supabase.auth.signOut()
+  window.location.href = '/login'
+}
