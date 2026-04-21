@@ -12,7 +12,6 @@ export default function Login() {
     setMessage('')
 
     if (isLogin) {
-      // 🔑 CONNEXION
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -21,12 +20,9 @@ export default function Login() {
       if (error) {
         setMessage(error.message)
       } else {
-        setMessage('Connecté ✅')
-        window.location.href = '/' // redirection
+        window.location.href = '/'
       }
-
     } else {
-      // 📝 INSCRIPTION
       const { error } = await supabase.auth.signUp({
         email,
         password,
@@ -35,7 +31,7 @@ export default function Login() {
       if (error) {
         setMessage(error.message)
       } else {
-        setMessage('Compte créé ✅ (vérifie ton email)')
+        setMessage('Compte créé ✅')
       }
     }
   }
@@ -69,14 +65,8 @@ export default function Login() {
       <p>{message}</p>
 
       <button onClick={() => setIsLogin(!isLogin)}>
-        {isLogin
-          ? "Créer un compte"
-          : "J'ai déjà un compte"}
+        {isLogin ? "Créer un compte" : "J'ai déjà un compte"}
       </button>
     </div>
   )
-}
-const logout = async () => {
-  await supabase.auth.signOut()
-  window.location.href = '/login'
 }
