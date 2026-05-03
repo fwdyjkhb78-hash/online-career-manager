@@ -1,0 +1,32 @@
+{
+  "name": "Season",
+  "type": "object",
+  "properties": {
+    "season_number": {
+      "type": "number",
+      "description": "Num\u00e9ro de la saison (ex: 1, 2, 3...)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Saison actuellement active"
+    },
+    "label": {
+      "type": "string",
+      "description": "Label affich\u00e9 (ex: Saison 1)"
+    },
+    "max_evolutions": {
+      "type": "number",
+      "default": 10,
+      "description": "Nombre maximum d'\u00e9volutions autoris\u00e9es par club cette saison"
+    },
+    "extra_evolutions_used": {
+      "type": "object",
+      "description": "Map club_id -> nombre d'\u00e9volutions suppl\u00e9mentaires forc\u00e9es par le staff",
+      "default": {}
+    }
+  },
+  "required": [
+    "season_number"
+  ]
+}

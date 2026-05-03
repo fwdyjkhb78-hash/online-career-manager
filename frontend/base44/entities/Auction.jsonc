@@ -1,0 +1,113 @@
+{
+  "name": "Auction",
+  "type": "object",
+  "properties": {
+    "player_id": {
+      "type": "string",
+      "description": "ID du joueur en base (optionnel si joueur externe)"
+    },
+    "player_name": {
+      "type": "string"
+    },
+    "player_position": {
+      "type": "string"
+    },
+    "player_overall": {
+      "type": "number"
+    },
+    "player_age": {
+      "type": "number"
+    },
+    "player_nationality": {
+      "type": "string"
+    },
+    "player_image_url": {
+      "type": "string"
+    },
+    "seller_club_id": {
+      "type": "string"
+    },
+    "seller_club_name": {
+      "type": "string"
+    },
+    "starting_price": {
+      "type": "number",
+      "default": 0
+    },
+    "current_price": {
+      "type": "number",
+      "default": 0
+    },
+    "current_bidder_id": {
+      "type": "string"
+    },
+    "current_bidder_name": {
+      "type": "string"
+    },
+    "current_bidder_club": {
+      "type": "string"
+    },
+    "last_bid_at": {
+      "type": "string",
+      "description": "ISO date de la derni\u00e8re offre"
+    },
+    "ends_at": {
+      "type": "string",
+      "description": "ISO date de fin (last_bid_at + 1h)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "closed",
+        "completed"
+      ],
+      "default": "active"
+    },
+    "is_external_player": {
+      "type": "boolean",
+      "default": false
+    },
+    "transfer_type": {
+      "type": "string",
+      "enum": [
+        "ligue",
+        "hors_ligue"
+      ],
+      "default": "ligue",
+      "description": "Type de transfert: intra-ligue ou hors ligue"
+    },
+    "transfer_id": {
+      "type": "string",
+      "description": "ID du transfert source si cr\u00e9\u00e9 depuis une offre accept\u00e9e"
+    },
+    "reactions": {
+      "type": "object",
+      "default": {}
+    },
+    "is_loan": {
+      "type": "boolean",
+      "default": false,
+      "description": "Vrai si c'est un pr\u00eat avec option"
+    },
+    "loan_buy_option": {
+      "type": "number",
+      "default": 0,
+      "description": "Option d'achat facultative (0 si aucune)"
+    },
+    "loan_mandatory_buy_option": {
+      "type": "number",
+      "default": 0,
+      "description": "Option d'achat obligatoire \u2014 pr\u00e9lev\u00e9e automatiquement \u00e0 la J.19"
+    },
+    "loan_buy_option_exercised": {
+      "type": "boolean",
+      "default": false,
+      "description": "Option d'achat exerc\u00e9e (volontaire ou obligatoire)"
+    }
+  },
+  "required": [
+    "player_name",
+    "starting_price"
+  ]
+}

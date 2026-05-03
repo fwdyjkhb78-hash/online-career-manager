@@ -1,0 +1,51 @@
+{
+  "name": "MercatoWindow",
+  "type": "object",
+  "properties": {
+    "is_open": {
+      "type": "boolean",
+      "default": false,
+      "description": "Le mercato est-il ouvert ?"
+    },
+    "opened_by_id": {
+      "type": "string",
+      "description": "ID du staff qui a ouvert"
+    },
+    "opened_by_name": {
+      "type": "string"
+    },
+    "opened_at": {
+      "type": "string",
+      "description": "ISO date d'ouverture"
+    },
+    "closed_at": {
+      "type": "string",
+      "description": "ISO date de fermeture"
+    },
+    "message": {
+      "type": "string",
+      "description": "Message d'annonce"
+    },
+    "pending_open_msg": {
+      "type": "boolean",
+      "default": false,
+      "description": "Message d'ouverture \u00e0 envoyer \u00e0 8h"
+    },
+    "pending_close_msg": {
+      "type": "boolean",
+      "default": false,
+      "description": "Message de fermeture \u00e0 envoyer \u00e0 00h"
+    },
+    "open_msg_text": {
+      "type": "string",
+      "description": "Texte du message automatique d'ouverture"
+    },
+    "close_msg_text": {
+      "type": "string",
+      "description": "Texte du message automatique de fermeture"
+    }
+  },
+  "required": [
+    "is_open"
+  ]
+}

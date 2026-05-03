@@ -1,0 +1,162 @@
+{
+  "name": "AcademyPlayer",
+  "type": "object",
+  "properties": {
+    "club_id": {
+      "type": "string"
+    },
+    "club_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "nationality": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number",
+      "description": "en cm"
+    },
+    "weight": {
+      "type": "number",
+      "description": "en kg"
+    },
+    "position": {
+      "type": "string",
+      "enum": [
+        "GK",
+        "CB",
+        "LB",
+        "RB",
+        "CDM",
+        "CM",
+        "CAM",
+        "LW",
+        "RW",
+        "ST"
+      ]
+    },
+    "overall": {
+      "type": "number"
+    },
+    "potential": {
+      "type": "number"
+    },
+    "centres": {
+      "type": "number"
+    },
+    "finition": {
+      "type": "number"
+    },
+    "precision_tete": {
+      "type": "number"
+    },
+    "passes_courtes": {
+      "type": "number"
+    },
+    "volees": {
+      "type": "number"
+    },
+    "aptitude": {
+      "type": "number"
+    },
+    "mauvais_pied": {
+      "type": "number"
+    },
+    "tacles_debout": {
+      "type": "number"
+    },
+    "tacles_glisses": {
+      "type": "number"
+    },
+    "dribbles": {
+      "type": "number"
+    },
+    "effet": {
+      "type": "number"
+    },
+    "precision_cf": {
+      "type": "number"
+    },
+    "passes_longues": {
+      "type": "number"
+    },
+    "conduite_balle": {
+      "type": "number"
+    },
+    "puissance_tir": {
+      "type": "number"
+    },
+    "detente": {
+      "type": "number"
+    },
+    "endurance": {
+      "type": "number"
+    },
+    "force": {
+      "type": "number"
+    },
+    "tirs_loin": {
+      "type": "number"
+    },
+    "acceleration": {
+      "type": "number"
+    },
+    "vitesse_sprint": {
+      "type": "number"
+    },
+    "agilite": {
+      "type": "number"
+    },
+    "reactivite": {
+      "type": "number"
+    },
+    "equilibre": {
+      "type": "number"
+    },
+    "agressivite": {
+      "type": "number"
+    },
+    "interception": {
+      "type": "number"
+    },
+    "positionnement": {
+      "type": "number"
+    },
+    "vista": {
+      "type": "number"
+    },
+    "penaltys": {
+      "type": "number"
+    },
+    "plongeon": {
+      "type": "number",
+      "description": "Stat gardien - Plongeon"
+    },
+    "jeu_a_la_main": {
+      "type": "number",
+      "description": "Stat gardien - Jeu \u00e0 la main"
+    },
+    "degagement": {
+      "type": "number",
+      "description": "Stat gardien - D\u00e9gagement"
+    },
+    "reflexe_g": {
+      "type": "number",
+      "description": "Stat gardien - R\u00e9flexe (stat principale)"
+    },
+    "player_details": {
+      "type": "string",
+      "description": "Details complets g\u00e9n\u00e9r\u00e9s par IA"
+    }
+  },
+  "required": [
+    "club_id",
+    "name",
+    "position"
+  ]
+}

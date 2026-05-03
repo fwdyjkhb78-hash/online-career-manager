@@ -1,0 +1,46 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "ID du destinataire"
+    },
+    "club_id": {
+      "type": "string",
+      "description": "Club du destinataire"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "auction_ended",
+        "transfer_offer",
+        "league_event",
+        "announcement",
+        "welcome",
+        "new_member"
+      ],
+      "description": "Type de notification"
+    },
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    },
+    "link_page": {
+      "type": "string",
+      "description": "Page vers laquelle pointer"
+    }
+  },
+  "required": [
+    "user_id",
+    "type",
+    "title",
+    "message"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "CommunityMessage",
+  "type": "object",
+  "properties": {
+    "author_id": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_pseudo": {
+      "type": "string",
+      "description": "Pseudo du site"
+    },
+    "author_club": {
+      "type": "string"
+    },
+    "author_club_logo": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "reply_to_id": {
+      "type": "string",
+      "description": "ID du message auquel on r\u00e9pond"
+    },
+    "reply_to_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "content",
+    "author_id"
+  ]
+}

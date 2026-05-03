@@ -1,0 +1,36 @@
+{
+  "name": "MoneyTransfer",
+  "type": "object",
+  "properties": {
+    "from_club_id": {
+      "type": "string"
+    },
+    "from_club_name": {
+      "type": "string"
+    },
+    "to_club_id": {
+      "type": "string"
+    },
+    "to_club_name": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed"
+      ],
+      "default": "completed"
+    }
+  },
+  "required": [
+    "from_club_id",
+    "to_club_id",
+    "amount"
+  ]
+}

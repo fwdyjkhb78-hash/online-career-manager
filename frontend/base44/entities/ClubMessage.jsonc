@@ -1,0 +1,32 @@
+{
+  "name": "ClubMessage",
+  "type": "object",
+  "properties": {
+    "club_id": {
+      "type": "string",
+      "description": "ID du club concern\u00e9"
+    },
+    "author_id": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_role": {
+      "type": "string",
+      "description": "R\u00f4le de l'auteur (manager, owner, admin, staff_...)"
+    },
+    "content": {
+      "type": "string"
+    },
+    "is_staff": {
+      "type": "boolean",
+      "default": false,
+      "description": "Le message vient-il du staff officiel ?"
+    }
+  },
+  "required": [
+    "club_id",
+    "content"
+  ]
+}

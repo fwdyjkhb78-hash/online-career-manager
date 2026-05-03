@@ -1,0 +1,66 @@
+{
+  "name": "Ticket",
+  "type": "object",
+  "properties": {
+    "author_id": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_club": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "demande_staff",
+        "probleme_technique",
+        "litige_transfert",
+        "signalement",
+        "autre"
+      ],
+      "description": "Cat\u00e9gorie du ticket"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ouvert",
+        "en_cours",
+        "resolu",
+        "ferme"
+      ],
+      "default": "ouvert"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "basse",
+        "normale",
+        "haute",
+        "urgente"
+      ],
+      "default": "normale"
+    },
+    "staff_response": {
+      "type": "string"
+    },
+    "responded_by": {
+      "type": "string"
+    },
+    "responded_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "category"
+  ]
+}

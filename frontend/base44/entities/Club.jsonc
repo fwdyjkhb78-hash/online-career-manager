@@ -1,0 +1,71 @@
+{
+  "name": "Club",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom du club"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "URL du logo du club"
+    },
+    "budget": {
+      "type": "number",
+      "default": 100000000,
+      "description": "Budget du club en euros"
+    },
+    "manager_id": {
+      "type": "string",
+      "description": "ID de l'utilisateur qui g\u00e8re ce club"
+    },
+    "manager_name": {
+      "type": "string",
+      "description": "Nom du manager"
+    },
+    "stadium": {
+      "type": "string",
+      "description": "Nom du stade"
+    },
+    "points": {
+      "type": "number",
+      "default": 0,
+      "description": "Points en championnat"
+    },
+    "wins": {
+      "type": "number",
+      "default": 0
+    },
+    "draws": {
+      "type": "number",
+      "default": 0
+    },
+    "losses": {
+      "type": "number",
+      "default": 0
+    },
+    "goals_for": {
+      "type": "number",
+      "default": 0
+    },
+    "goals_against": {
+      "type": "number",
+      "default": 0
+    },
+    "championship": {
+      "type": "string",
+      "description": "Championnat principal (r\u00e9trocompatibilit\u00e9)"
+    },
+    "championships": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Liste de tous les championnats auxquels appartient le club"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

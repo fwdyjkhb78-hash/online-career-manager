@@ -1,0 +1,45 @@
+{
+  "name": "PlayerEvolution",
+  "type": "object",
+  "properties": {
+    "player_id": {
+      "type": "string"
+    },
+    "player_name": {
+      "type": "string"
+    },
+    "player_position": {
+      "type": "string"
+    },
+    "player_image_url": {
+      "type": "string"
+    },
+    "club_id": {
+      "type": "string"
+    },
+    "club_name": {
+      "type": "string"
+    },
+    "overall_before": {
+      "type": "number"
+    },
+    "overall_after": {
+      "type": "number"
+    },
+    "season": {
+      "type": "number",
+      "description": "Saison (ann\u00e9e) de l'\u00e9volution"
+    },
+    "is_academy": {
+      "type": "boolean",
+      "default": false,
+      "description": "\u00c9volution d'un joueur du centre de formation"
+    }
+  },
+  "required": [
+    "player_id",
+    "player_name",
+    "overall_before",
+    "overall_after"
+  ]
+}

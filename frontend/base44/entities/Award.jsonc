@@ -1,0 +1,61 @@
+{
+  "name": "Award",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "totw",
+        "toty",
+        "ballon_d_or",
+        "meilleur_jeune",
+        "meilleur_gardien",
+        "meilleur_coach",
+        "champion_ligue"
+      ],
+      "description": "Type de troph\u00e9e"
+    },
+    "season": {
+      "type": "number",
+      "description": "Num\u00e9ro de la saison"
+    },
+    "matchday": {
+      "type": "number",
+      "description": "Journ\u00e9e concern\u00e9e (pour TOTW)"
+    },
+    "player_id": {
+      "type": "string",
+      "description": "ID du joueur (ou utilisateur pour meilleur_coach)"
+    },
+    "player_name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "club_id": {
+      "type": "string"
+    },
+    "club_name": {
+      "type": "string"
+    },
+    "overall": {
+      "type": "number"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Raison / nom du championnat gagn\u00e9 (ex: Ligue 1)"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "ID du staff qui a cr\u00e9\u00e9 l'award"
+    }
+  },
+  "required": [
+    "type",
+    "season"
+  ]
+}

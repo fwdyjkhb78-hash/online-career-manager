@@ -1,0 +1,38 @@
+{
+  "name": "Announcement",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "rules",
+        "presentation",
+        "news"
+      ],
+      "default": "news",
+      "description": "Type d'annonce"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "author_id": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "reactions": {
+      "type": "object",
+      "description": "Map of emoji -> array of user ids",
+      "default": {}
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "type"
+  ]
+}

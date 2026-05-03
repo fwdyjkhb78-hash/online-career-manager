@@ -1,0 +1,38 @@
+{
+  "name": "LeagueConfig",
+  "type": "object",
+  "properties": {
+    "paypal_link": {
+      "type": "string",
+      "description": "Lien PayPal.me de la ligue (ex: https://paypal.me/OCMLeague) \u2014 optionnel si QR code fourni"
+    },
+    "paypal_qr_url": {
+      "type": "string",
+      "description": "URL de l'image QR code PayPal \u00e0 afficher aux managers"
+    },
+    "budget_packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "euros": {
+            "type": "number"
+          },
+          "budget": {
+            "type": "number"
+          }
+        }
+      },
+      "default": [],
+      "description": "Packs de budget disponibles \u00e0 l'achat"
+    },
+    "purchase_instructions": {
+      "type": "string",
+      "description": "Instructions affich\u00e9es aux managers lors de l'achat"
+    }
+  },
+  "required": []
+}

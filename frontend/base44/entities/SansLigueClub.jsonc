@@ -1,0 +1,26 @@
+{
+  "name": "SansLigueClub",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom du club hors-ligue"
+    },
+    "country": {
+      "type": "string",
+      "description": "Pays du club"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "URL du logo"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Club disponible pour les offres"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

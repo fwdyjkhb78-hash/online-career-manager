@@ -1,0 +1,77 @@
+{
+  "name": "NationalTeam",
+  "type": "object",
+  "properties": {
+    "country": {
+      "type": "string",
+      "description": "Nom du pays"
+    },
+    "flag": {
+      "type": "string",
+      "description": "Emoji drapeau"
+    },
+    "nationality_key": {
+      "type": "string",
+      "description": "Cl\u00e9 de nationalit\u00e9 correspondante dans les joueurs (ex: Fran\u00e7ais, Espagnol)"
+    },
+    "championship": {
+      "type": "string",
+      "description": "Slug du championnat auquel appartient cette s\u00e9lection (ex: ligue1)"
+    },
+    "championship_name": {
+      "type": "string",
+      "description": "Nom du championnat"
+    },
+    "manager_id": {
+      "type": "string",
+      "description": "ID du manager assign\u00e9 par le staff"
+    },
+    "manager_name": {
+      "type": "string",
+      "description": "Nom du manager"
+    },
+    "player_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "IDs des joueurs s\u00e9lectionn\u00e9s"
+    },
+    "player_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Noms des joueurs s\u00e9lectionn\u00e9s"
+    },
+    "points": {
+      "type": "number",
+      "default": 0
+    },
+    "wins": {
+      "type": "number",
+      "default": 0
+    },
+    "draws": {
+      "type": "number",
+      "default": 0
+    },
+    "losses": {
+      "type": "number",
+      "default": 0
+    },
+    "goals_for": {
+      "type": "number",
+      "default": 0
+    },
+    "goals_against": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "country"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "name": "Tactic",
+  "type": "object",
+  "properties": {
+    "club_id": {
+      "type": "string"
+    },
+    "club_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nom de la tactique"
+    },
+    "formation": {
+      "type": "string",
+      "default": "4-3-3",
+      "description": "Ex: 4-3-3, 4-4-2, 3-5-2..."
+    },
+    "mentality": {
+      "type": "string",
+      "enum": [
+        "ultra_defensive",
+        "defensive",
+        "balanced",
+        "attacking",
+        "ultra_attacking"
+      ],
+      "default": "balanced"
+    },
+    "pressing": {
+      "type": "number",
+      "default": 5,
+      "description": "1-10"
+    },
+    "defensive_line": {
+      "type": "number",
+      "default": 5,
+      "description": "1-10"
+    },
+    "width": {
+      "type": "number",
+      "default": 5,
+      "description": "1-10"
+    },
+    "tempo": {
+      "type": "number",
+      "default": 5,
+      "description": "1-10"
+    },
+    "build_up": {
+      "type": "string",
+      "enum": [
+        "short",
+        "mixed",
+        "long"
+      ],
+      "default": "mixed"
+    },
+    "defensive_shape": {
+      "type": "string",
+      "enum": [
+        "compact",
+        "balanced",
+        "spread"
+      ],
+      "default": "balanced"
+    },
+    "set_pieces_attack": {
+      "type": "string",
+      "default": ""
+    },
+    "set_pieces_defense": {
+      "type": "string",
+      "default": ""
+    },
+    "lineup": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "player_id": {
+            "type": "string"
+          },
+          "player_name": {
+            "type": "string"
+          },
+          "position_slot": {
+            "type": "string"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "instructions": {
+            "type": "object"
+          }
+        }
+      },
+      "default": []
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "club_id",
+    "formation"
+  ]
+}

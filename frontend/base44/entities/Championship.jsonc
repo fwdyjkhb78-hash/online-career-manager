@@ -1,0 +1,149 @@
+{
+  "name": "Championship",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nom du championnat (ex: Ligue 1, Ligue 2)"
+    },
+    "slug": {
+      "type": "string",
+      "description": "Identifiant unique (ex: ligue1, ligue2)"
+    },
+    "order": {
+      "type": "number",
+      "default": 1,
+      "description": "Ordre d'affichage (1 = premiere division)"
+    },
+    "is_ldc": {
+      "type": "boolean",
+      "default": false,
+      "description": "Ceci est une Ligue des Champions"
+    },
+    "ldc_config": {
+      "type": "object",
+      "description": "Configuration compl\u00e8te pour une LDC (si is_ldc=true)",
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "qualification",
+            "league",
+            "playoff",
+            "knockout",
+            "finished"
+          ],
+          "default": "qualification",
+          "description": "Phase actuelle"
+        },
+        "qualification_format": {
+          "type": "string",
+          "enum": [
+            "poules",
+            "tableau",
+            "aller_retour"
+          ],
+          "default": "tableau",
+          "description": "Format des tours de qualification"
+        },
+        "league_team_count": {
+          "type": "number",
+          "default": 32,
+          "description": "Nombre total d'\u00e9quipes en phase de championnat"
+        },
+        "league_matches_per_team": {
+          "type": "number",
+          "default": 8,
+          "description": "Nombre de matchs par \u00e9quipe en phase de championnat"
+        },
+        "league_direct_qualification_spots": {
+          "type": "number",
+          "default": 8,
+          "description": "Nombre d'\u00e9quipes qualifi\u00e9es directement pour les finales"
+        },
+        "playoff_team_count": {
+          "type": "number",
+          "default": 16,
+          "description": "Nombre d'\u00e9quipes en barrages (9-24)"
+        },
+        "knockout_format": {
+          "type": "string",
+          "enum": [
+            "8",
+            "16",
+            "32"
+          ],
+          "default": "8",
+          "description": "Nombre d'\u00e9quipes en phase finale"
+        },
+        "is_two_legged": {
+          "type": "boolean",
+          "default": true,
+          "description": "Matchs aller-retour (sauf finale)"
+        }
+      }
+    },
+    "source_championships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "championship_slug": {
+            "type": "string",
+            "description": "Slug de la ligue source (ex: ligue1)"
+          },
+          "championship_name": {
+            "type": "string",
+            "description": "Nom de la ligue source"
+          },
+          "qualification_spots": {
+            "type": "number",
+            "default": 1,
+            "description": "Nombre d'\u00e9quipes qualifi\u00e9es de cette ligue"
+          },
+          "ranking_position_min": {
+            "type": "number",
+            "default": 1,
+            "description": "Position minimale au classement"
+          },
+          "ranking_position_max": {
+            "type": "number",
+            "description": "Position maximale au classement"
+          }
+        }
+      },
+      "default": [],
+      "description": "Ligues sources et crit\u00e8res de qualification pour LDC"
+    },
+    "promotion_to": {
+      "type": "string",
+      "description": "Slug du championnat vers lequel montent les clubs (ex: ligue1)"
+    },
+    "promotion_spots": {
+      "type": "number",
+      "default": 2,
+      "description": "Nombre de clubs qui montent"
+    },
+    "relegation_to": {
+      "type": "string",
+      "description": "Slug du championnat vers lequel descendent les clubs (ex: ligue2)"
+    },
+    "relegation_spots": {
+      "type": "number",
+      "default": 2,
+      "description": "Nombre de clubs qui descendent"
+    },
+    "ldc_spots": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "default": [],
+      "description": "Positions du classement qualifi\u00e9es pour la LDC (ex: [1, 2, 3])"
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ]
+}

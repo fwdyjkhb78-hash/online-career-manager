@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Online Career Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application de gestion de carrière de club (FIFA/FC) avec mercato, championnat, staff et communauté — migrée de **base44** vers **PocketBase**.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- **Frontend** : React 18 + Vite + TailwindCSS + shadcn/ui + TanStack Query + Framer Motion
+- **Backend principal** : [PocketBase](https://pocketbase.io/) (auth, collections, fichiers, temps-réel)
+- **Backend FastAPI** : conservé pour des routes utilitaires Mongo (optionnel)
 
-### `npm start`
+## Migration base44 → PocketBase
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Le fichier `src/api/base44Client.js` est un **shim de compatibilité** qui expose exactement la
+même API que l'ancien SDK base44 (`base44.entities.X.list/filter/create/update/delete`,
+`base44.auth.me/login/logout/updateMe`, etc.) mais pointe vers **PocketBase** en dessous.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Avantages :
+- Les ~100 fichiers qui importaient `{ base44 }` n'ont PAS eu besoin d'être modifiés.
+- Les noms d'entités en CamelCase (`Player`, `Club`) sont automatiquement mappés en
+  collections snake_case (`player`, `club`) côté PocketBase.
+- Les champs `created_date` / `updated_date` sont alias sur les `created` / `updated` natifs de PocketBase.
 
-### `npm test`
+### Ce qui est natif PocketBase
+| Base44 | PocketBase |
+| --- | --- |
+| `base44.entities.X.*` | `pb.collection('x').*` |
+| `base44.auth.login / me / logout / updateMe` | `pb.collection('users').auth*` |
+| `base44.integrations.Core.UploadFile` | `pb.collection('uploads').create(FormData)` |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### À brancher manuellement
+- `base44.integrations.Core.InvokeLLM` → brancher vers OpenAI/Gemini (stub par défaut).
+- `base44.functions.invoke('name', payload)` → pointer vers des hooks PocketBase exposés
+  sur `/api/pb-fn/<name>` (stub par défaut).
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Créer `frontend/.env` :
+```
+REACT_APP_BACKEND_URL=<url-publique-app>
+VITE_POCKETBASE_URL=http://127.0.0.1:8090
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Lancer en local
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# PocketBase
+./pocketbase serve
 
-### `npm run eject`
+# Frontend
+cd frontend
+yarn install
+yarn start   # http://localhost:3000
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Collections PocketBase à créer
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+À créer une fois dans l'admin PocketBase (collection `users` existe par défaut). Pour chaque
+entité listée dans `base44/entities/*.jsonc` créer une collection homonyme en snake_case
+(ex: `player`, `club`, `match`, `notification`, ...) avec les champs correspondants.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Le fichier `base44/entities/User.jsonc` contient les champs custom à ajouter à la collection
+`users` : `role`, `club_id`, `club_name`, `has_selected_club`, `last_seen`, `pseudo`,
+`full_name`, etc.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Scripts
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `yarn start` — dev server Vite (port 3000)
+- `yarn build` — build production
+- `yarn preview` — preview build
+- `yarn lint` — ESLint

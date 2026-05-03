@@ -1,0 +1,54 @@
+{
+  "name": "BudgetRequest",
+  "type": "object",
+  "properties": {
+    "club_id": {
+      "type": "string"
+    },
+    "club_name": {
+      "type": "string"
+    },
+    "manager_id": {
+      "type": "string"
+    },
+    "manager_name": {
+      "type": "string"
+    },
+    "euros": {
+      "type": "number",
+      "description": "Montant pay\u00e9 en euros r\u00e9els"
+    },
+    "budget_amount": {
+      "type": "number",
+      "description": "Budget en jeu \u00e0 cr\u00e9diter"
+    },
+    "pack_label": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "proof_url": {
+      "type": "string",
+      "description": "URL de la capture d'\u00e9cran du paiement"
+    },
+    "staff_note": {
+      "type": "string"
+    },
+    "approved_by": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "club_id",
+    "manager_id",
+    "euros",
+    "budget_amount"
+  ]
+}
