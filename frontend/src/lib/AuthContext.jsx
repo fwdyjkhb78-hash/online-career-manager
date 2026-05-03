@@ -37,9 +37,15 @@ export const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setIsAuthenticated(true);
     } catch (error) {
-      console.error('User auth check failed:', error);
-      setIsAuthenticated(false);
-      setUser(null);
+      console.warn('User auth check failed:', error?.status, error?.message);
+      // Only sign out the UI if the token was definitively invalidated.
+      // Transient errors (Cloudflare, network) must not clear the session.
+      if (!pb.authStore.isValid) {
+        setIsAuthenticated(false);
+        setUser(null);
+      }
+      // else: keep the previous user/isAuthenticated state, the next
+      //       refresh will retry.
     } finally {
       setIsLoadingAuth(false);
     }

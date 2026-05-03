@@ -55,13 +55,13 @@ export default function Layout({ children, currentPageName }) {
       }};
     loadUser();
 
-    // Heartbeat toutes les 60s
+    // Heartbeat toutes les 5 min (réduit pour éviter les rate-limits Cloudflare)
     const heartbeat = setInterval(async () => {
       try {
         const isAuth = await base44.auth.isAuthenticated();
         if (isAuth) await base44.auth.updateMe({ last_seen: new Date().toISOString() });
       } catch (e) {}
-    }, 60000);
+    }, 300000);
     return () => clearInterval(heartbeat);
   }, [currentPageName]);
 

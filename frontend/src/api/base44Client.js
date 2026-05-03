@@ -16,8 +16,54 @@ const PB_URL =
   import.meta.env.VITE_POCKETBASE_URL ||
   (typeof window !== 'undefined' ? `${window.location.origin}` : 'http://127.0.0.1:8090');
 
+// --- Throttled fetch ---
+// Cloudflare's WAF treats bursts of >~30 req/s from the same browser as a bot
+// and challenges the WHOLE page. We tame the PocketBase SDK by routing every
+// request through a small concurrency-limited queue with a tiny delay between
+// successive calls.
+const MAX_CONCURRENT = 2;
+const MIN_INTERVAL_MS = 80;
+let active = 0;
+let lastStart = 0;
+const waitQueue = [];
+
+const scheduleNext = () => {
+  if (waitQueue.length === 0 || active >= MAX_CONCURRENT) return;
+  const now = Date.now();
+  const wait = Math.max(0, lastStart + MIN_INTERVAL_MS - now);
+  setTimeout(() => {
+    if (waitQueue.length === 0 || active >= MAX_CONCURRENT) return;
+    const job = waitQueue.shift();
+    active += 1;
+    lastStart = Date.now();
+    job();
+  }, wait);
+};
+
+const throttledFetch = (...args) =>
+  new Promise((resolve, reject) => {
+    const run = () => {
+      fetch(...args)
+        .then((res) => resolve(res))
+        .catch((err) => reject(err))
+        .finally(() => {
+          active -= 1;
+          scheduleNext();
+        });
+    };
+    waitQueue.push(run);
+    scheduleNext();
+  });
+
 export const pb = new PocketBase(PB_URL);
 pb.autoCancellation(false);
+
+// Patch pb.send so every request goes through the throttled fetch.
+const originalSend = pb.send.bind(pb);
+pb.send = function (path, reqOpts = {}) {
+  const opts = { ...reqOpts, fetch: throttledFetch };
+  return originalSend(path, opts);
+};
 
 // --- Name mapping: "CamelCase" Entity -> "snake_case" PocketBase collection ---
 const toSnake = (name) =>
@@ -198,6 +244,22 @@ const entities = new Proxy(
   }
 );
 
+// Determines whether an error from PocketBase truly means "the auth token
+// is no longer valid". We must NOT clear authStore on transient errors
+// (network glitches, Cloudflare WAF challenges, 5xx, aborts, etc.) —
+// otherwise the user gets logged out unexpectedly.
+const isInvalidAuthError = (e) => {
+  if (!e) return false;
+  const status = e.status;
+  // Only PocketBase-issued 401 means the token was rejected by PB.
+  if (status !== 401) return false;
+  const data = e.data || {};
+  // Cloudflare challenges aren't 401 anyway, but be defensive.
+  const msg = (data.message || '').toLowerCase();
+  if (msg.includes('cloudflare') || msg.includes('cf-')) return false;
+  return true;
+};
+
 // --- Auth wrapper ---
 const auth = {
   async me() {
@@ -210,7 +272,11 @@ const auth = {
       const user = await pb.collection('users').authRefresh();
       return normalizeRecord(user.record);
     } catch (e) {
-      pb.authStore.clear();
+      // Only clear the token if PB itself says the token is invalid.
+      // Transient Cloudflare/network/5xx errors must NOT log the user out.
+      if (isInvalidAuthError(e)) {
+        pb.authStore.clear();
+      }
       throw e;
     }
   },
@@ -220,9 +286,13 @@ const auth = {
     try {
       await pb.collection('users').authRefresh();
       return true;
-    } catch {
-      pb.authStore.clear();
-      return false;
+    } catch (e) {
+      if (isInvalidAuthError(e)) {
+        pb.authStore.clear();
+        return false;
+      }
+      // Transient error → assume still authenticated, retry next time
+      return true;
     }
   },
 
