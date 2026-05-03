@@ -50,7 +50,7 @@ export default function Login() {
     }
   };
 
-  const pbUrl = pb?.baseUrl || import.meta.env.VITE_POCKETBASE_URL;
+  const pbUrl = pb?.baseURL || pb?.baseUrl || import.meta.env.VITE_POCKETBASE_URL;
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-950 px-4 py-10">

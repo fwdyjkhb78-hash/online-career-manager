@@ -61,11 +61,8 @@ const buildFilterParams = (filterObj = {}) => {
 
 // --- Sort normalization: "-created_date" or "field" ---
 const normalizeSort = (sort) => {
-  if (!sort) return '-created';
-  if (typeof sort !== 'string') return '-created';
-  // PocketBase uses its own built-in fields `created`, `updated`.
-  // Older base44 code uses `created_date`, `updated_date`. Keep user value,
-  // they should exist as real fields in collections.
+  if (!sort) return '-created_date';
+  if (typeof sort !== 'string') return '-created_date';
   return sort;
 };
 
@@ -248,7 +245,7 @@ const auth = {
   },
 
   async updateMe(data) {
-    const current = pb.authStore.model;
+    const current = pb.authStore.record || pb.authStore.model;
     if (!current?.id) {
       const err = new Error('Not authenticated');
       err.status = 401;
@@ -287,7 +284,8 @@ const integrations = {
         const fd = new FormData();
         fd.append(field, file);
         const rec = await pb.collection(coll).create(fd);
-        const url = pb.files.getUrl(rec, rec[field]);
+        const getUrl = pb.files.getURL || pb.files.getUrl;
+        const url = getUrl.call(pb.files, rec, rec[field]);
         return { file_url: url, record: rec };
       } catch (e) {
         console.error('[base44→PocketBase shim] UploadFile failed:', e);
@@ -330,7 +328,7 @@ const users = {
 // --- App logs (telemetry) - no-op by default ---
 const appLogs = {
   logUserInApp() {
-    /* no-op */
+    return Promise.resolve();
   },
 };
 
